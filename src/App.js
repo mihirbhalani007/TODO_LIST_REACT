@@ -1,17 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
+import axios from "axios";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
 
-  const addTask = (task) => {
-    setTasks([...tasks, task]);
+  const fetchTasks = async () => {
+    const response = await axios.get("http://localhost:3001/tasks");
+    setTasks(response.data.task);
   };
 
-  const deleteTask = (index) => {
+  // useEffect(() => {
+  //   fetchTasks();
+  // }, []);
+
+  const addTask = async (task) => {
+    const response = await axios.post("http://localhost:3001/tasks", {
+      task,
+    });
+    setTasks([...tasks, response.data.task]);
+  };
+
+  const deleteTask = (id) => {
     const updatedTasks = [...tasks];
-    updatedTasks.splice(index, 1);
+    updatedTasks.splice(id, 1);
     setTasks(updatedTasks);
   };
 
