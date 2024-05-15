@@ -7,24 +7,34 @@ const App = () => {
   const [tasks, setTasks] = useState([]);
 
   const fetchTasks = async () => {
-    const response = await axios.get("http://localhost:3001/tasks");
-    setTasks(response.data.task);
+    try {
+      const response = await axios.get("http://localhost:3001/tasks");
+      console.log(response.data);
+      const normalizedTasks = response.data.map((task) => ({
+        id: task.id,
+        task: task.task,
+      }));
+      setTasks(normalizedTasks);
+      console.log("normalized tasks:", normalizedTasks);
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
+    }
   };
 
-  // useEffect(() => {
-  //   fetchTasks();
-  // }, []);
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   const addTask = async (task) => {
     const response = await axios.post("http://localhost:3001/tasks", {
       task,
     });
-    setTasks([...tasks, response.data.task]);
+    setTasks([...tasks, response.data]);
   };
 
-  const deleteTask = (id) => {
+  const deleteTask = (index) => {
     const updatedTasks = [...tasks];
-    updatedTasks.splice(id, 1);
+    updatedTasks.splice(index, 1);
     setTasks(updatedTasks);
   };
 

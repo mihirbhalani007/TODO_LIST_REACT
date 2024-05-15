@@ -14,7 +14,7 @@ const Task = ({ task, onDeleteTask, onUpdateTask }) => {
   };
 
   const handleChange = (e) => {
-    setEditedTask(e.target.value);
+    setEditedTask({ ...editedTask, task: e.target.value });
   };
 
   return (
@@ -22,16 +22,15 @@ const Task = ({ task, onDeleteTask, onUpdateTask }) => {
       {editing ? (
         <input
           type="text"
-          value={editedTask}
+          value={editedTask.task}
           onChange={handleChange}
-          maxlength="30"
+          maxLength="30"
           autoFocus
-          spellcheck="false"
+          spellCheck="false"
           className="focus:outline-none focus:bg-gray-100 rounded mx-5 w-60 text-blue-500"
-          
         />
       ) : (
-        <span className="text-lg mx-5">{task}</span>
+        <span className="text-lg mx-5">{task.task}</span>
       )}
       <div>
         {editing ? (

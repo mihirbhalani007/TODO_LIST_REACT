@@ -10,12 +10,12 @@ const TaskList = ({ tasks, onDeleteTask, onUpdateTask }) => {
 
   return (
     <div>
-      {tasks.map((task, id) => (
+      {tasks.map((task, index) => (
         <Task
-          key={id}
+          key={task.id}
           task={task}
-          onDeleteTask={() => onDeleteTask(id)}
-          onUpdateTask={(updatedTask) => handleUpdateTask(id, updatedTask)}
+          onDeleteTask={() => onDeleteTask(index)}
+          onUpdateTask={(updatedTask) => handleUpdateTask(index, updatedTask)}
         />
       ))}
     </div>
