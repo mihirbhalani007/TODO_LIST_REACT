@@ -40,7 +40,7 @@ const App = () => {
     }
   };
 
-  const onUpdateTask = async (updatedTask, id) => {
+  const UpdateTask = async (updatedTask, id) => {
     try {
       const response = await axios.put(`http://localhost:3001/tasks/${id}`, {
         task: updatedTask.task,
@@ -66,7 +66,7 @@ const App = () => {
       <TaskList
         tasks={tasks}
         onDeleteTask={deleteTask}
-        onUpdateTask={onUpdateTask}
+        onUpdateTask={UpdateTask}
       />
     </div>
   );

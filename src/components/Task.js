@@ -18,7 +18,7 @@ const Task = ({ task, onDeleteTask, onUpdateTask }) => {
   };
 
   return (
-    <div className="flex items-center justify-between border-b py-3 hover:bg-gray-100 rounded-md delay-100 ease-in-out">
+    <div className="flex items-center justify-between border-b py-3 hover:bg-gray-200 rounded-md delay-100 ease-in-out">
       {editing ? (
         <input
           type="text"
