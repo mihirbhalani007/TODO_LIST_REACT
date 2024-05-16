@@ -5,7 +5,7 @@ const TaskList = ({ tasks, onDeleteTask, onUpdateTask }) => {
   const handleUpdateTask = (taskIndex, updatedTask) => {
     const updatedTasks = [...tasks];
     updatedTasks[taskIndex] = updatedTask;
-    onUpdateTask(updatedTasks);
+    onUpdateTask(updatedTask, updatedTasks[taskIndex].id);
   };
 
   return (
@@ -14,7 +14,7 @@ const TaskList = ({ tasks, onDeleteTask, onUpdateTask }) => {
         <Task
           key={task.id}
           task={task}
-          onDeleteTask={() => onDeleteTask(index)}
+          onDeleteTask={() => onDeleteTask(task.id)}
           onUpdateTask={(updatedTask) => handleUpdateTask(index, updatedTask)}
         />
       ))}

@@ -9,13 +9,11 @@ const App = () => {
   const fetchTasks = async () => {
     try {
       const response = await axios.get("http://localhost:3001/tasks");
-      console.log(response.data);
       const normalizedTasks = response.data.map((task) => ({
         id: task.id,
         task: task.task,
       }));
       setTasks(normalizedTasks);
-      console.log("normalized tasks:", normalizedTasks);
     } catch (error) {
       console.error("Error fetching tasks:", error);
     }
@@ -32,14 +30,33 @@ const App = () => {
     setTasks([...tasks, response.data]);
   };
 
-  const deleteTask = (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks.splice(index, 1);
-    setTasks(updatedTasks);
+  const deleteTask = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3001/tasks/${id}`);
+      const updatedTasks = tasks.filter((task) => task.id !== id);
+      setTasks(updatedTasks);
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
   };
 
-  const onUpdateTask = (updatedTasks) => {
-    setTasks(updatedTasks);
+  const onUpdateTask = async (updatedTask, id) => {
+    try {
+      const response = await axios.put(`http://localhost:3001/tasks/${id}`, {
+        task: updatedTask.task,
+      });
+
+      const editedTasks = tasks.map((task) => {
+        if (task.id === id) {
+          return { ...task, ...response.data };
+        }
+        return task;
+      });
+
+      setTasks(editedTasks);
+    } catch (error) {
+      console.error("Error updating task:", error);
+    }
   };
 
   return (

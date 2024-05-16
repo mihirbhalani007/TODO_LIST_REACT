@@ -20,6 +20,7 @@ const TaskForm = ({ onAddTask }) => {
           placeholder="Add a new task"
           className="border rounded p-2 mr-2 w-64 focus:outline-none focus:border-blue-500"
         />
+
         <button
           type="submit"
           className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500"
