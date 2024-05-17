@@ -6,6 +6,7 @@ import SearchTask from "./components/SearchTask";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
+  const [search, setSearch] = useState("");
 
   const fetchTasks = async () => {
     try {
@@ -60,13 +61,21 @@ const App = () => {
     }
   };
 
+  const handleInputChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const filteredTasks = tasks.filter((task) =>
+    task.task.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className="container mx-auto mt-4">
       <h1 className="text-2xl font-bold mb-4 text-center">To-Do List</h1>
       <TaskForm onAddTask={addTask} />
-      <SearchTask/>
+      <SearchTask handleInputChange={handleInputChange} search={search} />
       <TaskList
-        tasks={tasks}
+        tasks={filteredTasks}
         onDeleteTask={deleteTask}
         onUpdateTask={UpdateTask}
       />

@@ -7,7 +7,7 @@ const Task = ({
   isEditing,
   setEditingIndex,
   clearEditing,
-  serialNumber
+  serialNumber,
 }) => {
   const [editing, setEditing] = useState(false);
   const [editedTask, setEditedTask] = useState(task);
