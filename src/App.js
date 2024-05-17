@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import axios from "axios";
+import SearchTask from "./components/SearchTask";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -63,6 +64,7 @@ const App = () => {
     <div className="container mx-auto mt-4">
       <h1 className="text-2xl font-bold mb-4 text-center">To-Do List</h1>
       <TaskForm onAddTask={addTask} />
+      <SearchTask/>
       <TaskList
         tasks={tasks}
         onDeleteTask={deleteTask}

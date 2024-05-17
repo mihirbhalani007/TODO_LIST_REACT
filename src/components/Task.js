@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Task = ({ task, onDeleteTask, onUpdateTask }) => {
+const Task = ({
+  task,
+  onDeleteTask,
+  onUpdateTask,
+  isEditing,
+  setEditingIndex,
+  clearEditing,
+  serialNumber
+}) => {
   const [editing, setEditing] = useState(false);
   const [editedTask, setEditedTask] = useState(task);
 
+  useEffect(() => {
+    setEditing(isEditing);
+  }, [isEditing]);
+
   const handleEdit = () => {
-    setEditing(true);
+    // setEditing(true);
+    setEditingIndex();
   };
 
   const handleSave = () => {
-    setEditing(false);
+    // setEditing(false);
+    clearEditing();
     onUpdateTask(editedTask);
   };
 
@@ -30,7 +44,10 @@ const Task = ({ task, onDeleteTask, onUpdateTask }) => {
           className="focus:outline-none focus:bg-gray-100 rounded mx-5 w-60 text-blue-500"
         />
       ) : (
-        <span className="text-lg mx-5">{task.task}</span>
+        <div>
+          <span className="text-lg mx-5">{serialNumber} </span>
+          <span className="text-lg mx-5">{task.task}</span>
+        </div>
       )}
       <div>
         {editing ? (
