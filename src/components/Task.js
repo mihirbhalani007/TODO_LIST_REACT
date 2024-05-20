@@ -4,6 +4,7 @@ const Task = ({
   task,
   onDeleteTask,
   onUpdateTask,
+  onToggleTaskCompletion,
   isEditing,
   setEditingIndex,
   clearEditing,
@@ -17,12 +18,10 @@ const Task = ({
   }, [isEditing]);
 
   const handleEdit = () => {
-    // setEditing(true);
     setEditingIndex();
   };
 
   const handleSave = () => {
-    // setEditing(false);
     clearEditing();
     onUpdateTask(editedTask);
   };
@@ -32,7 +31,13 @@ const Task = ({
   };
 
   return (
-    <div className="flex items-center justify-between border-b py-3 hover:bg-gray-200 rounded-md delay-100 ease-in-out">
+    <div className="flex items-center justify-between p-4 mb-2 bg-white rounded shadow transition duration-300 ease-in-out hover:bg-gray-100 hover:scale-105">
+      <input
+        type="checkbox"
+        checked={task.completed}
+        onChange={onToggleTaskCompletion}
+        className="form-checkbox mr-4"
+      />
       {editing ? (
         <input
           type="text"
@@ -41,33 +46,35 @@ const Task = ({
           maxLength="30"
           autoFocus
           spellCheck="false"
-          className="focus:outline-none focus:bg-gray-100 rounded mx-5 w-60 text-blue-500"
+          className="flex-grow p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600 mr-4"
         />
       ) : (
-        <div>
-          <span className="text-lg mx-5">{serialNumber} </span>
-          <span className="text-lg mx-5">{task.task}</span>
+        <div className="flex-grow text-left">
+          <span className="text-lg">{serialNumber}. </span>
+          <span className={`text-lg ${task.completed ? "line-through" : ""}`}>
+            {task.task}
+          </span>
         </div>
       )}
-      <div>
+      <div className="flex space-x-2">
         {editing ? (
           <button
             onClick={handleSave}
-            className="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600"
+            className="bg-green-600 text-white p-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 transition duration-300"
           >
             Save
           </button>
         ) : (
           <button
             onClick={handleEdit}
-            className="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600"
+            className="bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 transition duration-300"
           >
             Edit
           </button>
         )}
         <button
-          className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600"
           onClick={onDeleteTask}
+          className="bg-red-600 text-white p-2 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 transition duration-300"
         >
           Delete
         </button>

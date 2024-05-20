@@ -11,19 +11,18 @@ const TaskForm = ({ onAddTask }) => {
   };
 
   return (
-    <div className="grid place-items-center">
-      <form onSubmit={handleSubmit} className="mb-4">
+    <div className="p-4 border-b border-gray-300">
+      <form onSubmit={handleSubmit} className="flex mb-4">
         <input
           type="text"
           value={task}
           onChange={(e) => setTask(e.target.value)}
           placeholder="Add a new task"
-          className="border rounded p-2 mr-2 w-64 focus:outline-none focus:border-blue-500"
+          className="flex-grow p-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
         />
-
         <button
           type="submit"
-          className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500"
+          className="bg-blue-600 text-white p-2 rounded-r-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-300"
         >
           Add
         </button>

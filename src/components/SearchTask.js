@@ -1,13 +1,10 @@
-
-
 function SearchTask({ handleInputChange, search }) {
-  
   return (
-    <div>
+    <div className="p-4">
       <input
         type="text"
         placeholder="Search tasks here..."
-        className="border border-black rounded p-2 mr-2 w-full focus:outline-none focus:border-blue-500 mb-5"
+        className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600 mb-4"
         onChange={handleInputChange}
         value={search}
       />
