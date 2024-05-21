@@ -9,7 +9,7 @@ const TaskForm = ({ onAddTask }) => {
     onAddTask(task);
     setTask("");
   };
-
+  
   return (
     <div className="p-4 border-b border-gray-300">
       <form onSubmit={handleSubmit} className="flex mb-4">

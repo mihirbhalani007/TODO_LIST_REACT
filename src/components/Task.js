@@ -31,7 +31,7 @@ const Task = ({
   };
 
   return (
-    <div className="flex items-center justify-between p-4 mb-2 bg-white rounded shadow transition duration-300 ease-in-out hover:bg-gray-100 hover:scale-105">
+    <div className="flex items-center justify-between p-4 mb-2 bg-white rounded shadow transition duration-300 ease-in-out hover:bg-gray-100 hover:scale-95">
       <input
         type="checkbox"
         checked={task.completed}

@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import Task from "./Task";
 
-const TaskList = ({ tasks, onDeleteTask, onUpdateTask, onToggleTaskCompletion }) => {
+const TaskList = ({
+  tasks,
+  onDeleteTask,
+  onUpdateTask,
+  onToggleTaskCompletion,
+}) => {
   const [editingIndex, setEditingIndex] = useState(null);
 
   const handleUpdateTask = (taskIndex, updatedTask) => {
